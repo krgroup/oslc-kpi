@@ -35,7 +35,7 @@
           // previousMaturity:  "WD",
 
           // if there a publicly available Editor's Draft, this is the link
-           edDraftURI:           "http://www.josemalvarez.es",
+           edDraftURI:           "http://krgroup.github.io/oslc-kpi/",
 
           // if this is a LCWD, uncomment and set the end of its review period
           // lcEnd: "2009-08-05",
@@ -63,7 +63,7 @@
           wg:           "In Charge Of This Document Working Group",
           
           // URI of the public WG page
-          wgURI:        "http://example.org/really-cool-wg",
+          wgURI:        "http://krgroup.github.io/oslc-kpi/",
           
           // name (without the @w3c.org) of the public mailing to which comments are due
           wgPublicList: "spec-writers-anonymous",
@@ -81,13 +81,13 @@
   <body>
     <section id='abstract'>
       <p>
-        This family of documents defines the Open Services for Lifecycle Collaboration Knowledge Management and Definition specification, also known as OSLC KPI. These documents collectively define the OSLC KPI 1.0 specification. This specification supports key REST APIs for Knowledge Management systems. OSLC KPI 1.0 takes an open, loosely coupled approach to specific lifecycle integration scenarios. The scenarios and this V1.0 specification were created by the Knowledge Reuse Group (UC3M) and The Reuse Company (TRC). 
+        This family of documents defines the Open Services for Lifecycle Collaboration Key Performance Indicators Management and Definition specification, also known as OSLC KPI. These documents collectively define the OSLC KPI 1.0 specification. This specification supports key REST APIs for Key Performance Indicator systems. OSLC KPI 1.0 takes an open, loosely coupled approach to specific lifecycle integration scenarios. The scenarios and this V1.0 specification were created by the Knowledge Reuse Group (UC3M) and The Reuse Company (TRC). 
       </p>
 	  <p>This specification builds on the Open Services for Lifecycle Collaboration (OSLC) Core v2.0 Specification to define the resources, properties and operations supported by an OSLC Requirements Definition and Management (OSLC-RM) provider.
 	  </p>
 	  
 	  <p>
-	  Knowledge Management resources include Indicators, Indicators Collection, Observations and supporting resources defined in the OSLC Core specification. The properties defined describe these resources and the relationships between resources. Operations are defined in terms of HTTP methods and MIME type handling. The resources, properties and operations defined do not form a comprehensive interface to Key Performance Indicator Definition and Management, but instead target specific integration use cases.
+	  Key Performance Indicator resources include Indicators, Indicators Collection, Observations and supporting resources defined in the OSLC Core specification. The properties defined describe these resources and the relationships between resources. Operations are defined in terms of HTTP methods and MIME type handling. The resources, properties and operations defined do not form a comprehensive interface to Key Performance Indicator Definition and Management, but instead target specific integration use cases.
 	  </p>
 	  <strong>Notation</strong>
 	  <p>
@@ -105,16 +105,59 @@
     <section>
       <h2>Introduction</h2>
       <p>
-        Blah blah blah...
+       Public and private bodies are continuously seeking new analytical tools and methods to assess some policy, change, specification, quality, etc. and to support their decisions. Nevertheless the sheer mass of data now available is raising a new dynamic and challenging environment in which traditional tools are facing major problems to deal with data-sources diversity, structural issues or complex processes of estimation. New paradigms and tools are required to take advantage of the existing data-based environment to design and estimate actions in this dynamic context according to needs of transparency, standardization, adaptability and extensibility among others with the aim of providing new context-aware and added-value services that can help a deepen and broaden understanding of the impact of a policy (or a requirement change) in a more fast and efficient way. As a consequence common features can be extracted from the existing situation:
       </p>
+	  <ul>
+	  <li><strong>Data sources.</strong> Data and information are continuously being generated as observations from social networks, public and private institutions, NGOs, services and applications, etc. creating a tangled environment of sources, formats and access protocols with a huge but restricted potential for exploitation. Nevertheless data processing, knowledge inferring, etc. are not mere processes of gathering and analyzing, it is necessary to deal with semantic and syntactic issues, e.g. particular measurements and dimensions or name mismatches, in order to enable a proper data/information re-use and knowledge generation.</li>
+	  <li><strong>Structure.</strong> Quantitative indexes are a common practice and are usually defined (a mathematical model) by experts to aggregate several indicators (in a hierarchy structure) in just one value to provide a measure of the impact or performance of some policy in a certain context. The structure of these indexes is obviously subjected to change over time to collect more information or adjust their composition and relationships (narrower/broader). That is why technology should be able to afford adequate techniques to automatically populate new changes in an efficient way.</li>
+	  <li><strong>Computation process.</strong> This feature refers to the calculation of a quality index. Observations are gathered from diverse data sources and aligned to an structure (commonly indicators) that is processed through various mathematical operators to generate a final index value.   Nevertheless the computation process is not always described neither open (any minor change can imply a long time for validation) implying that cannot be easily replied for third-parties with other purposes, for instance research, preventing one  of the most wanted characteristics such as transparency. Furthermore it is necessary to ensure that the computation process is sound and correct.</li>
+	  <li><strong>Documentation.</strong> New policy-making or quality management strategies go ahead of a simple and closed value and it is necessary to bring   new ways of exploiting data and information. Moreover the use of the Web-based protocols as a dissemination channel represents a powerful environment in which information should be available taking into account the multilingual and multicultural character of information. In this context documentation mechanisms must necessarily cover all the aforementioned features to afford a detailed explanation of a quantitative index-based policy to both policymakers and final users. However existing initiatives usually generates some kind of hand-made report which is not easy to keep up-to-date and deliver to the long-tail of interested third-parties.</li>
+	  </ul>
+	  
+	  <p>Obviously semantic-based technologies, as underlying concepts of the OSLC initiative, can partially address this challenging environment for supporting new quality-checking strategies. A common and shared data model based on existing standardized semantic web vocabularies and datasets can be used to represent indicators, unit metrics, or observations from both, structural and computational, points of view enabling a right exploitation of meta-data and semantics. That is why the present section introduces: a high-level model on top of the RDF Data Cube Vocabulary [1], a shared effort to model statistical data in RDF reusing parts (the cube model) of the Statistical Data and Metadata Exchange Vocabulary [2] (SDMX), to represent the structure and computation (if needed) of indicators and observations.
+	  </p>
 	  <h2>Motivation and Objectives</h2>
       <p>
         Blah blah blah...
       </p>
 	  <h2>Terminology</h2>
       <p>
-        Blah blah blah...
+        Essentially a quantitative index or just a set of KPIs (without any underlying structured) is comprised of several components. In the same way, a component can also be composed of the aggregation of indicators that keep concrete observations. From this initial definition some characteristics and assumptions can be found: 
       </p>
+	  <ol>
+		<li>Although observations can be directly mapped to an index or a component, they are frequently computed applying a bottom-up approach from an indicator to a component and so on. </li>
+		<li>An observation is a real numerical value (general speaking, a resource value) extracted from some agent or tool out under a precise context. Generally observations only take one measure and are considered to be raw without any pre-processing. </li>
+		<li>Before aggregating observation values, components and indexes can estimate missing values to finally normalize them in order to get a quantitative value.</li>
+	  </ol>
+	  <p>According to the aforementioned characteristics and assumptions an observable element (index, component or indicator) comprises a dataset of observations under a specific context (dimensions and/or meta-data) that can be directly gathered from external sources or computed by some kind of OWA (Ordered Weighted Averaging) operator. </p>
+	  <ul>
+		<li>Definition 1 (Observation o). It is a tuple{v,m,s}, where v is a numerical value for the measure m with an status s that belongs to only one dataset of observations O.</li>
+		<li>Definition 2 (Dataset q). It is a tuple{O,m,D,A,T}, where O is a set of observations for only one measure m that is described under a set of dimensions D and a set of annotations A. Additionally, some attributes can be defined in the set T for structure enrichment.</li>
+		<li>Definition 3 (Aggregated Dataset aq). It is an aggregation of n datasets q_i (identified by the set Q) which set of observations O is derivate by applying  an OWA operator p to the observations O_(q_i )</li> 
+	  </ul>
+	  <p>As a necessary condition for the computation process, an aggregated dataset aq defined by means of the set of dimensions D_aq can be computed iif  &forall; q_j  &isin; Q: D_aq  &sube; D_qj. Furthermore the OWA operator p can only aggregate values belonging to the same measure m. As a consequence of the aforementioned definitions some remarks must be outlined in order to restrict the understanding of a quantitative index (structure and computation):</p>
+	  
+	  <ul>
+	  	<li>The set of dimensions D, annotations A and attributes T for a given dataset Q is always the same with the aim of describing all observations under  the same context.</li>
+		<li>An index i and a component c are aggregated datasets. Nevertheless this restriction is relaxed if observations can be directly mapped to these elements without any computation process.</li>
+		<li>An indicator in can be either a dataset or an aggregated dataset.</li>
+		<li>All elements in definitions must be uniquely identified. </li>
+		<li>An aggregated dataset is also a dataset.</li>
+
+	  </ul>
+	  <p>Building on the aforementioned definitions, it is possible to describe a set of key performance indicators, observations, indicators composition and structure. In this light, a direct translation built on the top of the RDF Data Cube Vocabulary (represented using the prefix <code>qb</code>), SDMX and other semantic web vocabularies is presented in the next table. Thus, all concepts in the index are described reusing existing definitions, taking advantage of previous efforts and pre-established semantics with the aim of being extended in the future to fit new context. </p>
+	  
+	  <p style="text-align:center">
+	  <img src="imgs/KPI-model.png" width="80%"/> <br/>
+	   Figure 1: Overview of the data model to represent KPIs and observations.
+	  </p>
+	  
+	  
+	  <p>This approach is focused on publishing of statistical values without paying special attention to what type of indicators and observations are going to be generated. Thus, two major resources are defined, KPI and Observation, to create new constructors or primitives on top of the RDF Data Cube Vocabulary, see Figure 1.</p>
+	  <p>The main advantage of this approach lies on the separation of dimensions and attributes between indicators and observations. Obviously both can contain particular metaproperties (attributes) but main and common characteristics (dimensions and attributes) of all observations are refactored in the indicator structure. Besides, some positive side effects of this approach lies on the possibility of easing the versioning and tracking of observations on the same indicator. For instance, observations can be easily sliced by a dimension or an attribute. In the case of requirements quality, a dimension can be a project, an indicator, etc.</p>
+	  <p>However, the main drawback of this approach is that is not closed (an intrinsic RDF characteristic), new dimensions or/and attributes could be automatically generated by third-party tools. That is why, it is completely necessary to merge the advantages of this approach with the existing OSLC specifications about “Performance Monitoring” and “Estimation and Measurement” that provide a closed shape for publishing metrics and observations.</p>
+
+	  
     </section>
 	
 	<section>
@@ -225,34 +268,34 @@
 	  <h3>Specification Versioning</h3>
 	  <p>See <a href="http://open-services.net/bin/view/Main/OslcCoreSpecification#Specification_Versioning">Core Specification Version 2.0 - Specification Versioning</a>.</p>
 	  <p>Service providers that support the resource formats and services in this specification <strong>MUST</strong> add an HTTP response header of <code>OSLC-Core-Version</code> with a value of <code>2.0</code>. Consumers <strong>SHOULD</strong> request formats and services defined in this document by providing a HTTP request header of <code>OSLC-Core-Version</code> with a value of <code>2.0</code>. See section below on Version Compatibility with OSLC RM 1.0 Specifications.</p>
-	 <p>This specification reserves, for possible future use, the use of the HTTP header <code>OSLC-KM-Version</code>. OSLC Providers <strong>MUST NOT</strong> use this HTTP header.
+	 <p>This specification reserves, for possible future use, the use of the HTTP header <code>OSLC-KPI-Version</code>. OSLC Providers <strong>MUST NOT</strong> use this HTTP header.
 	 </p>
 	  <h3>Namespaces</h3>
-	  <p> In addition to the namespace URIs and namespace prefixes <code>oslc</code>, <code>rdf</code>, <code>dcterms</code> and <code>foaf</code> defined in the <a href="http://open-services.net/bin/view/Main/OslcCoreSpecification">Core Specification Version 2.0</a>, OSLC KM defines the namespace URI of <code>http://ios.crystal-artemis.eu/ns/km/</code> with a preferred namespace prefix of <code>Ios_km</code>.
+	  <p> In addition to the namespace URIs and namespace prefixes <code>oslc</code>, <code>rdf</code>, <code>dcterms</code> and <code>foaf</code> defined in the <a href="http://open-services.net/bin/view/Main/OslcCoreSpecification">Core Specification Version 2.0</a>, OSLC KPI defines the namespace URI of <code>http://ios.crystal-artemis.eu/ns/km/</code> with a preferred namespace prefix of <code>Ios_km</code>.
 	  <p>Furthermore, the SKOS (Simple Knowledge Organization System), a W3C Recommendation, is also defined through the namespace: <code>http://www.w3.org/2004/02/skos/core</code>  and prefix: <code>skos</code>. Other semantic-based vocabularies will use the <em>de facto</em> namespace and prefix that can be searched using the service: <a href="http://prefix.cc">Prefix.cc</a>.
 	  <h3>Resource Formats</h3>
 	  <p>In addition to the requirements for <a href="http://open-services.net/bin/view/Main/OslcCoreSpecification#OslcDefinedResourceRepresentations">Core Specification Version 2.0 - OSLC Defined Resource Representations</a>, this section outlines further refinements and restrictions.
 	  </p>
 	  <p>For HTTP GET/PUT/POST requests on all OSLC RM and OSLC Core defined resource types,</p>
 		<ul>
-			<li>KM Providers <strong>MUST</strong> support RDF/XML representations with media-type <code>application/rdf+xml</code>. KM Consumers <strong>MUST</strong> be prepared to deal with any valid RDF/XML document.
+			<li>KPI Providers <strong>MUST</strong> support RDF/XML representations with media-type <code>application/rdf+xml</code>. KPI Consumers <strong>MUST</strong> be prepared to deal with any valid RDF/XML document.
 			</li> 
 			
-			<li>KM Providers <strong>MUST</strong> support XML representations with media-type <code>application/xml</code>. The XML representations <strong>MUST</strong> follow the guidelines outlined in <a href="http://open-services.net/bin/view/Main/OSLCCoreSpecAppendixRepresentations">Core Specification Appendix B: Representations and Examples</a>.</li> 
+			<li>KPI Providers <strong>MUST</strong> support XML representations with media-type <code>application/xml</code>. The XML representations <strong>MUST</strong> follow the guidelines outlined in <a href="http://open-services.net/bin/view/Main/OSLCCoreSpecAppendixRepresentations">Core Specification Appendix B: Representations and Examples</a>.</li> 
 			
-			<li>KM Providers <strong>MAY</strong> support JSON representations with media-type <code>application/json</code>. The JSON representations <strong>MUST</strong> follow the guidelines outlined in <a href="http://open-services.net/bin/view/Main/OSLCCoreSpecAppendixRepresentations">Core Specification Appendix B: Representations and Examples</a>.</li>
+			<li>KPI Providers <strong>MAY</strong> support JSON representations with media-type <code>application/json</code>. The JSON representations <strong>MUST</strong> follow the guidelines outlined in <a href="http://open-services.net/bin/view/Main/OSLCCoreSpecAppendixRepresentations">Core Specification Appendix B: Representations and Examples</a>.</li>
 		</ul> 
 	<p>Additionally, for HTTP GET,</p> 
 	<ul>
-		<li>KM Providers <strong>SHOULD</strong> provide an [X]HTML representation and a user interface (UI) preview as defined by <a href="http://open-services.net/bin/view/Main/OslcCoreUiPreview">Core Specification Version 2.0 UI Preview</a></li>
+		<li>KPI Providers <strong>SHOULD</strong> provide an [X]HTML representation and a user interface (UI) preview as defined by <a href="http://open-services.net/bin/view/Main/OslcCoreUiPreview">Core Specification Version 2.0 UI Preview</a></li>
 	</ul> 
 	<p>For HTTP GET response formats for Query requests,</p> 
 	<ul>
-		<li>KM Providers <strong>MUST</strong> support RDF/XML representations with meda-type <code>application/rdf+xml</code>.
+		<li>KPI Providers <strong>MUST</strong> support RDF/XML representations with meda-type <code>application/rdf+xml</code>.
 		</li> 
-		<li>KM Providers <strong>MUST</strong> support XML representations with media-type <code>application/xml</code>.
+		<li>KPI Providers <strong>MUST</strong> support XML representations with media-type <code>application/xml</code>.
 		</li> 
-		<li>KM Providers <strong>MAY</strong> support JSON representations with media-type <code>application/json</code>.
+		<li>KPI Providers <strong>MAY</strong> support JSON representations with media-type <code>application/json</code>.
 		</li>
 	</ul> 
 	<p>OSLC Providers <strong>MAY</strong> refuse to accept RDF/XML documents which do not have a top-level rdf:RDF document element. The OSLC Core describes an example, non-normative algorithm for generating RDF/XML representations of OSLC Defined Resources.</p>
@@ -260,7 +303,7 @@
 	  
 	  <h3>Authentication</h3>
 	  
-	  <p>See <a href="http://open-services.net/bin/view/Main/OslcCoreSpecification#Authentication">Core Specification Version 2.0 - Authentication</a>. OSLC KM places no additional constraints on authentication.</p>
+	  <p>See <a href="http://open-services.net/bin/view/Main/OslcCoreSpecification#Authentication">Core Specification Version 2.0 - Authentication</a>. OSLC KPI places no additional constraints on authentication.</p>
 	  
 	  <h3>Error Responses</h3>
 	  
@@ -269,7 +312,7 @@
 
 	  <h3>Pagination</h3>
 	  
-	  <p>OSLC KM service providers <strong>SHOULD</strong> support pagination of query results as defined by the OSLC Core Specification. OSLC RM service providers <strong>MAY</strong> support pagination of a single resource's properties as defined by the OSLC Core Specification.</p>
+	  <p>OSLC KPI service providers <strong>SHOULD</strong> support pagination of query results as defined by the OSLC Core Specification. OSLC RM service providers <strong>MAY</strong> support pagination of a single resource's properties as defined by the OSLC Core Specification.</p>
 
 
 	  <h3>Requesting and Updating Properties</h3>
@@ -282,9 +325,9 @@
     </section>
 	
 	<section>
-      <h2>KM Resource Definitions</h2>
-     <p>Property value types that are not defined in the following sections, are defined in <a href="/bin/view/Main/OslcCoreSpecification#Defining_OSLC_Properties">Core Specification Version 2.0 - Defining OSLC Properties</a>.</p>
-	 <p>The meaning of the columns in the following table is defined as follows. See also <a href="/bin/view/Main/OSLCCoreSpecAppendixA" class="twikiLink">OSLC Core Specification Appendix A: Common Properties</a> for further details on Resource Shapes.</p>
+      <h2>KPI Resource Definitions</h2>
+     <p>Property value types that are not defined in the following sections, are defined in <a href="http://openservices.net/bin/view/Main/OslcCoreSpecification#Defining_OSLC_Properties">Core Specification Version 2.0 - Defining OSLC Properties</a>.</p>
+	 <p>The meaning of the columns in the following table is defined as follows. See also <a href="http://openservices.net/bin/view/Main/OSLCCoreSpecAppendixA" class="twikiLink">OSLC Core Specification Appendix A: Common Properties</a> for further details on Resource Shapes.</p>
 	 <ul>
 		<li>Occurs: The multiplicity of the property (corresponds to "oslc:occurs" on an "oslc:Property" resource).
 		</li> 
@@ -299,26 +342,378 @@
 		<li> Description: A textual description of the meaning of the property.
 		</li>
 	</ul> 
-	<h3>KM Resource</h3>
+	<h3>KPI Resource</h3>
+	<p>This is a resource to represent a key performance indicator about which observations will be generated. It contains the common context (dimensions and attributes) for all generated observations such as unit metrics, tool, project, etc.
+	</p>
+	<p>This approach is based on the promotion of statistical data following the principles of the W3C Recommendation <a href="http://www.w3.org/TR/vocab-data-cube/ ">"The RDF Data Cube Vocabulary".</a>
+	</p>
+
+	<table class="table table-striped table-bordered table-condensed">
+		<thead>
+		<tr><th>Prefixed Name</th>
+		<th>Occurs</th>
+		<th>Read-only</th>
+		<th>Value-type</th>
+		<th>Representation</th>
+		<th>Range</th>
+		<th>Description</th>
+		</tr>
+		</thead>
+		<tbody>
+		<tr>
+			<td><a href="http://www.w3.org/2004/02/skos/core#notation" title="Skos:notation"><code>skos:notation</code></a></td>
+			<td>Zero-or-one</td>
+			<td>False</td>
+			<td>String</td>
+			<td>Inline</td>
+			<td><a href="http://www.w3.org/2004/02/skos/core#notation" title="Skos:notation"><code>skos:notation</code></a></td>
+			<td>An acronym to identify this KPI (it could be similar to the identifier but for presentation purposes).</td>
+		</tr>
+		<tr>
+			<td><a href="http://purl.org/dc/terms/source" title="Dcterms:source"><code>dcterms:source</code></a></td>
+			<td>Zero-or-many</td>
+			<td>True</td>
+			<td>Resource</td>
+			<td>Reference</td>
+			<td><a href="http://www.w3.org/2001/XMLSchema#anyURI" title="Xsd:anyURI"><code>xsd:anyURI</code></a></td>
+			<td>The document or documents in which this KPI has been defined.</td>
+		</tr>
+		<tr>
+			<td><a href="http://purl.org/linked-data/cube#structure" title="Qb:structure"><code>qb:structure</code></a></td>
+			<td>Exactly-one</td>
+			<td>True</td>
+			<td>Either Resource or Local Resource</td>
+			<td>Either Reference or Inline</td>
+			<td><a href="http://purl.org/linked-data/cube#DataStructureDefinition"><code>qb:DataStructureDefinition</code></a></td>
+			<td>The structure of this KPI: attributes, dimensions and measure (just one). This property should be attached to a qb:Dataset.</td>
+		</tr>
+		<tr>
+			<td><a href="http://purl.org/dc/terms/subject" title="Dcterms:subject"><code>dcterms:subject</code></a></td>
+			<td>One-or-many</td>
+			<td>False</td>
+			<td>Resource</td>
+			<td>Reference</td>
+			<td><a href="http://www.w3.org/2004/02/skos/core#Concept" title="Skos:Concept"><code>skos:Concept</code></a></td>
+			<td>The concepts that are being measured with this KPI.</td>
+		</tr>
+		<tr>
+			<td><a href="http://purl.org/linked-data/cube#component" title="Qb:component"><code>qb:component</code></a></td>
+			<td>Zero-or-many</td>
+			<td>True</td>
+			<td>Either Resource or Local Resource</td>
+			<td>Either Reference or Inline</td>
+			<td><a href="http://purl.org/linked-data/cube#ComponentSpecification"><code>qb:ComponentSpecification</code></a></td>
+			<td>The specification of the KPI structure: dimensions, attributes and measure (just one). This is actually link to the element qb:DataStructureDefinition that will be locally defined in the KPI.</td>
+
+		</tr>
+		<tr>
+			<td><a href="http://purl.org/linked-data/cube#dimension"><code>qb:dimension</code></a></td>
+			<td>One-or-many</td>
+			<td>True</td>
+			<td>Either Resource or Local Resource</td>
+			<td>Either Reference or Inline</td>
+			<td><a href="http://purl.org/linked-data/cube#DimensionProperty"><code>qb:DimensionProperty</code></a></td>
+			<td>The dimensions of this KPI. 
+		This is actually link to the element qb:DataStructureDefinition (qb:ComponentSpecification) that will be locally defined in the KPI.</td>
+		</tr>
+		<tr>
+			<td><a href="http://purl.org/dc/terms/identifier" title="Dcterms:identifier"><code>dcterms:identifier</code></a></td>
+			<td>Exactly-one</td>
+			<td>True</td>
+			<td>String</td>
+			<td>Inline</td>
+			<td><a href="http://www.w3.org/2000/01/rdf-schema#Literal" title="Rdfs:Literal"><code>rdfs:Literal</code></a></td>
+			<td>The unique identifier for this KPI. It is now an string but it would be better a skos:Concept to avoid broken links between pieces of data.</td>
+		</tr>
+		<tr>
+			<td><a href="http://purl.org/dc/terms/title" title="Dcterms:title"><code>dcterms:title</code></a></td>
+			<td>One-or-many</td>
+			<td>True</td>
+			<td>String</td>
+			<td>Inline</td>
+			<td><a href="http://www.w3.org/2000/01/rdf-schema#Literal" title="Rdfs:Literal"><code>rdfs:Literal</code></a></td>
+			<td>The title of the KPI used to display a name.</td>
+		</tr>
+		<tr>
+			<td><a href="http://purl.org/dc/terms/description" title="Dcterms:description"><code>dcterms:description</code></a></td>
+			<td>Zero-or-many</td>
+			<td>False</td>
+			<td>String</td>
+			<td>Inline</td>
+			<td><a href="http://www.w3.org/2000/01/rdf-schema#Literal" title="Rdfs:Literal"><code>rdfs:Literal</code></a></td>
+			<td>The long description of this KPI that must be explanatory enough to understand what the KPI means.</td>
+		</tr>
+		<tr>
+		<td><a href="http://purl.org/dc/terms/created" title="Dcterms:created"><code>dcterms:created</code></a></td>
+			<td>Exactly-one</td>
+			<td>True</td>
+			<td>DateTime</td>
+			<td>Inline</td>
+			<td><a href="http://www.w3.org/2001/XMLSchema#dateTimeStamp"><code>xsd:dateTimeStamp</code></a></td>
+			<td>The date and time in which the KPI was defined. The range is restricted to a data time stamp, although the Dublin Core allows us to use any rdfs:Literal.
+		See: <a rel="nofollow" class="external free" href="http://dublincore.org/documents/dcmi-terms/#terms-created">http://dublincore.org/documents/dcmi-terms/#terms-created</a></td>
+		</tr>
+		<tr>
+					<td><a href="http://purl.org/dc/terms/modified" title="Dcterms:modified"><code>dcterms:modified</code></a></td>
+			<td>Zero-or-many</td>
+			<td>False</td>
+			<td>DateTime</td>
+			<td>Inline</td>
+			<td><a href="http://www.w3.org/2001/XMLSchema#dateTimeStamp"><code>xsd:dateTimeStamp</code></a></td>
+			<td>The moment in which the KPI was modified or redefined. The range is restricted to a data time stamp, although the Dublin Core allows us to use any rdfs:Literal.
+		See: <a rel="nofollow" class="external free" href="http://dublincore.org/documents/dcmi-terms/#terms-created">http://dublincore.org/documents/dcmi-terms/#terms-created</a></td>
+
+		</tr>
+		<tr>
+			<td><a href="http://purl.org/dc/terms/creator" title="Dcterms:creator"><code>dcterms:creator</code></a></td>
+			<td>One-or-many</td>
+			<td>True</td>
+			<td>Resource</td>
+			<td>Either Reference or Inline</td>
+			<td><a href="http://xmlns.com/foaf/0.1/Agent"><code>foaf:Agent</code></a></td>
+			<td>The agents (people, organizations or tools) that have designed this KPI.</td>
+
+		</tr>
+		<tr>
+			<td><a href="http://purl.org/linked-data/cube#attribute"><code>qb:attribute</code></a></td>
+			<td>One-or-many</td>
+			<td>True</td>
+			<td>Either Resource or Local Resource</td>
+			<td>Either Reference or Inline</td>
+			<td><a href="http://purl.org/linked-data/cube#AttributeProperty"><code>qb:AttributeProperty</code></a></td>
+			<td>The attributes of this KPI. This is actually link to the element qb:DataStructureDefinition (qb:ComponentSpecification) that will be locally defined in the KPI.</td>
+
+		</tr>
+		<tr>
+			<td><a href="http://purl.org/linked-data/cube#measure"><code>qb:measure</code></a></td>
+			<td>Exactly-one</td>
+			<td>True</td>
+			<td>Either Resource or Local Resource</td>
+			<td>Either Reference or Inline</td>
+			<td><a href="http://purl.org/linked-data/cube#MeasureProperty"><code>qb:MeasureProperty</code></a></td>
+			<td>The unit of measure of this KPI. 
+		<p>It is inspired on the concept of muo:UnitOfMeasurement.
+		</p><p>See example of ontologies (Google Code will be closed so these links must be updated)&#160;: 
+		</p><p>-<a rel="nofollow" class="external free" href="https://code.google.com/p/publishing-statistical-data/source/browse/trunk/specs/src/main/vocab/sdmx-measure.ttl">https://code.google.com/p/publishing-statistical-data/source/browse/trunk/specs/src/main/vocab/sdmx-measure.ttl</a>
+		</p><p>-<a rel="nofollow" class="external free" href="http://idi.fundacionctic.org/muo/muo-vocab.html">http://idi.fundacionctic.org/muo/muo-vocab.html</a>
+		</p><p>-<a rel="nofollow" class="external free" href="http://unit-ontology.googlecode.com/svn/trunk/uo.owl">http://unit-ontology.googlecode.com/svn/trunk/uo.owl</a>
+		</p>
+		This is actually link to the element qb:DataStructureDefinition (qb:ComponentSpecification) that will be locally defined in the KPI.</td>
+
+		</tr>
+		<tr>
+			<td><a href="#" title="Ios_kpi:aggregates">Ios_kpi:aggregates</a></td>
+			<td>Zero-or-many</td>
+			<td>True</td>
+			<td>Either Resource or Local Resource</td>
+			<td>Either Reference or Inline</td>
+			<td><a href="http://www.w3.org/1999/02/22-rdf-syntax-ns#List" title="Rdf:List"><code>rdf:List</code></a></td>
+			<td>This property links to a set of existing KPIs with the aim of creating an aggregated KPI applying some OWA operator (Ordered weighted averaging aggregation operator). It should be a resource node containing 2 properties: 1) KPI (a reference to an existing KPI) and 2) weight (double value).</td>
+
+		</tr>
+		<tr>
+			<td><a href="Ios_kpi:dataset" title="Ios kpi:dataset"><code>Ios_kpi:dataset</code></a></td>
+			<td>Zero-or-many</td>
+			<td>False</td>
+			<td>Either Resource or Local Resource</td>
+			<td>Either Reference or Inline</td>
+			<td><a href="http://purl.org/linked-data/cube#dataset" title="Qb:dataset"><code>qb:dataset</code></a></td>
+			<td>The list of datasets in which this KPI is being used. A KPI can be also seen as qb:Dataset but it seems better to separate the definition of the KPI from the observations to reuse the KPI in different sets of observations.</td>
+
+		</tr>
+		<tr>
+			<td><a href="#" title="Ios_kpi:time"><code>Ios_kpi:time</code></a></td>
+			<td>Exactly-one</td>
+			<td>True</td>
+			<td>Resource</td>
+			<td>Either Reference or Inline</td>
+			<td><a href="http://www.w3.org/1999/02/22-rdf-syntax-ns#Resource" title="Rdf:Resource "><code>Rdf:Resource</code></a></td>
+			<td>It is a link to an instance of the following classes:
+		<p>TemporalEntity&lt;Instant&lt;Interval&lt;ProperInterval&lt;DateTimeInterval
+		</p>
+		
+		<p>DurationDescription&lt;DateTimeDescription&lt;TemporalUnit&lt;DayOfWeek</p><br />
+		<p>
+		A time resource generated through the next ontology: <a rel="nofollow" class="external free" href="http://datahub.io/dataset/data-gov-uk-time-intervals">http://datahub.io/dataset/data-gov-uk-time-intervals</a> should be also valid.
+		</p>
+		Source: <a rel="nofollow" class="external free" href="http://www.w3.org/TR/owl-time/#summary">http://www.w3.org/TR/owl-time/#summary</a></td>
+			
+		</tr>
+
+		</tbody>
+</table>
+
+	
+	<h3>Observation Resource</h3>
+	<p>A single observation that is linked to a KPI through a dataset or slice and only contains a value (commonly a double value).</p>
+	<table class="table table-striped table-bordered table-condensed">
+	<thead>
+		<tr><th>Prefixed Name</th>
+		<th>Occurs</th>
+		<th>Read-only</th>
+		<th>Value-type</th>
+		<th>Representation</th>
+		<th>Range</th>
+		<th>Description</th>
+		</tr>
+		</thead>
+		<tbody>
+		<tr>
+			<td><a href="http://purl.org/linked-data/cube#dataset" title="Qb:dataset"><code>qb:dataset</code></a></td>
+			<td>One-or-many</td>
+			<td>True</td>
+			<td>Resource</td>
+			<td>Reference</td>
+			<td><a href="http://purl.org/linked-data/cube#dataset" title="Qb:dataset"><code>qb:dataset</code></a></td>
+			<td>Indicates the data set of which this observation is a part.
+		Source: <a rel="nofollow" class="external free" href="http://www.w3.org/TR/vocab-data-cube/#ref_qb_Observation">http://www.w3.org/TR/vocab-data-cube/#ref_qb_Observation</a></td>
+			
+		</tr>
+		<tr>
+			<td><a href="http://purl.org/dc/terms/title" title="Dcterms:title"><code>dcterms:title</code></a></td>
+			<td>Zero-or-many</td>
+			<td>True</td>
+			<td>String</td>
+			<td>Inline</td>
+			<td><a href="http://www.w3.org/2000/01/rdf-schema#Literal" title="Rdfs:Literal"><code>rdfs:Literal</code></a></td>
+			<td>A title describing the observation as a string literal.</td>
+			
+		</tr>
+		<tr>
+			<td><a href="http://purl.org/dc/terms/identifier" title="Dcterms:identifier"><code>dcterms:identifier</code></a></td>
+			<td>Exactly-one</td>
+			<td>True</td>
+			<td>String</td>
+			<td>Inline</td>
+			<td><a href="http://www.w3.org/2000/01/rdf-schema#Literal" title="Rdfs:Literal"><code>rdfs:Literal</code></a></td>
+			<td>An unique identifier for this observation.</td>
+			
+		</tr>
+		<tr>
+			<td><a href="http://purl.org/dc/terms/description" title="Dcterms:description"><code>dcterms:description</code></a></td>
+			<td>Zero-or-many</td>
+			<td>True</td>
+			<td>String</td>
+			<td>Inline</td>
+			<td><a href="http://www.w3.org/2000/01/rdf-schema#Literal" title="Rdfs:Literal"><code>rdfs:Literal</code></a></td>
+			<td>An explanatory description for this observation. A text describing what is being measured and how the value has been calculated.</td>
+			
+		</tr>
+		<tr>
+			<td><a href="http://purl.org/dc/terms/creator" title="Dcterms:creator"><code>dcterms:creator</code></a></td>
+			<td>One-or-many</td>
+			<td>True</td>
+			<td>Resource</td>
+			<td>Either Reference or Inline</td>
+			<td><a href="http://xmlns.com/foaf/0.1/Agent"><code>foaf:Agent</code></a></td>
+			<td>A set of links to the agents (people, organizations, processes and tools) that have been part of the creation of this observation.</td>
+			
+		</tr>
+		<tr>
+			<td><a href="http://purl.org/dc/terms/created" title="Dcterms:created"><code>dcterms:created</code></a></td>
+			<td>Exactly-one</td>
+			<td>True</td>
+			<td>DateTime</td>
+			<td>Inline</td>
+			<td><a href="http://www.w3.org/2001/XMLSchema#dateTimeStamp"><code>xsd:dateTimeStamp</code></a></td>
+			<td>The time in which this observation has been generated.</td>
+			
+		</tr>
+		<tr>
+			<td><a href="http://purl.org/dc/terms/subject" title="Dcterms:subject"><code>dcterms:subject</code></a></td>
+			<td>Exactly-one</td>
+			<td>True</td>
+			<td>Resource</td>
+			<td>Reference</td>
+			<td><a href="#" title="Ios kpi:KPI"><code>Ios kpi:KPI</code></a></td>
+			<td>A reference to the KPI that explains this observation. The KPI contains all information regarding dimensions, attributes, etc. (context) while the observation is just a mere value+metadata.</td>
+			
+		</tr>
+		<tr>
+			<td><a href="#" title="Ios kpi:value"><code>Ios kpi:value</code></a></td>
+			<td>Exactly-one</td>
+			<td>True</td>
+			<td>Either Resource or Local Resource</td>
+			<td>Inline</td>
+			<td><a href="http://www.w3.org/2001/XMLSchema#double"><code>xsd:double</code></a></td>
+			<td>The value that is being measured can be just a string representing a numerical value (preferred) or even a resource.</td>
+			
+		</tr>
+		<tr>
+			<td><a href="#" title="Ios kpi:md5 hash"><code>Ios_kpi:md5-hash</code></a></td>
+			<td>Exactly-one</td>
+			<td>True</td>
+			<td>String</td>
+			<td>Inline</td>
+			<td><a href="http://www.w3.org/2001/XMLSchema#string"><code>xsd:string</code></a></td>
+			<td>An unique MD5 hash auto-generated to avoid no man-in-the-middle attacks. Integrity constraint. 
+		It can be calculated generating the MD5 hash of the KPI identifier, attributes, value and creator (all fields separated by #).</td>
+			
+		</tr>
+		<tr>
+			<td><a href="http://www.w3.org/2004/02/skos/core#scopeNote" title="Skos:scopeNote"><code>skos:scopeNote</code></a></td>
+			<td>Zero-or-many</td>
+			<td>True</td>
+			<td>Either Resource or Local Resource</td>
+			<td>Either Reference or Inline</td>
+			<td><a href="http://www.w3.org/2000/01/rdf-schema#Literal" title="Rdfs:Literal"><code>rdfs:Literal</code></a></td>
+			<td>Metainformation about the observation. This is a field to include extra comments about the interpretation of the observation.
+		See: <a rel="nofollow" class="external free" href="http://www.w3.org/2009/08/skos-reference/skos.html#scopeNote">http://www.w3.org/2009/08/skos-reference/skos.html#scopeNote</a></td>
+			
+		</tr>
+		<tr>
+			<td><a href="http://purl.org/linked-data/cube#dataset" title="Qb:dataset"><code>qb:dataset</code></a></td>
+			<td>Zero-or-many</td>
+			<td>True</td>
+			<td>Resource</td>
+			<td>Reference</td>
+			<td><a href="http://purl.org/linked-data/cube#dataset" title="Qb:dataset"><code>qb:dataset</code></a></td>
+			<td>A, possibly arbitrary, group of observations (dataset or slice).
+		See: <a rel="nofollow" class="external free" href="http://www.w3.org/TR/vocab-data-cube/#slices">http://www.w3.org/TR/vocab-data-cube/#slices</a></td>
+			
+		</tr>
+		<tr>
+			<td><a href="http://purl.org/dc/terms/source" title="Dcterms:source"><code>dcterms:source</code></a></td>
+			<td>Exactly-one</td>
+			<td>True</td>
+			<td>Either Resource or Local Resource</td>
+			<td>Either Reference or Inline</td>
+			<td><a href="http://xmlns.com/foaf/0.1/Agent"><code>foaf:Agent</code></a></td>
+			<td>A link to an agent (person, group, organization, process or tool) that has generated this observation.</td>
+			
+		</tr>
+		<tr>
+			<td><a href="#" title="Ios kpi:ref indicator"><code>Ios_kpi:ref-indicator</code></a></td>
+			<td>Exactly-one</td>
+			<td>True</td>
+			<td>Resource</td>
+			<td>Reference</td>
+			<td><a href="#" title="Ios kpi:KPI"><code>Ios_kpi:KPI</code></a></td>
+			<td>A direct link to the KPI for which this observation is being generated. It can be also reached from the link between KPI-&gt;dataset-&gt;Observation but a direct link can be useful for presentation purposes.</td>
+			
+		</tr>
+		</tbody>
+		</table>
+
 	
 	<h3>Relationship labels </h3>
-	<p>When an KM relationship property is to be presented in a user interface, it may be helpful to provide an informative and  useful textual label for that relationship instance. (This in addition to the relationship property URI and the object resource URI, which are also candidates for presentation to a user.) To this end, OSLC providers <strong>MAY</strong> suppport a dcterms:title link property in RM resource representations where a relationship property is permitted, using the anchor approach outlined in the OSLC Core Links Guidance.</p>
+	<p>When an KPI relationship property is to be presented in a user interface, it may be helpful to provide an informative and  useful textual label for that relationship instance. (This in addition to the relationship property URI and the object resource URI, which are also candidates for presentation to a user.) To this end, OSLC providers <strong>MAY</strong> suppport a dcterms:title link property in RM resource representations where a relationship property is permitted, using the anchor approach outlined in the OSLC Core Links Guidance.</p>
 	<p>Providers and consumers should be aware that the dcterms:title of a link is unrelated to the dcterms:title of the object resource. Indeed, links may carry other properties with names in common to the object of the link, but there is no specified relationship between these property values.</p>
     </section>
 	<section>
-	<h2>KM Service Provider Capabilities </h2>
+	<h2>KPI Service Provider Capabilities </h2>
 	<h3>Service Provider Resources </h3>
-	<p>Service providers <strong>MUST</strong> provide one or more <code>oslc:ServiceProvider</code> resources as defined by <a href="/bin/view/Main/OslcCoreSpecification#Service_Provider_Resources">Core Specification Version 2.0 - Service Provider Resource</a>. Discovery of OSLC Service Provider Resources <strong>MAY</strong> be via one or more OSLC Service Provider Catalog Resources, or may be discovered by some other and/or additional Provider-specific means outwith the scope of this specification. The <code>oslc:Service</code> resources referenced by this <code>oslc:ServiceProvider</code> <strong>MUST</strong> have an <code>oslc:domain</code> of <code>http://open-services.net/ns/rm#</code>.</p>
+	<p>Service providers <strong>MUST</strong> provide one or more <code>oslc:ServiceProvider</code> resources as defined by <a href="http://openservices.net/bin/view/Main/OslcCoreSpecification#Service_Provider_Resources">Core Specification Version 2.0 - Service Provider Resource</a>. Discovery of OSLC Service Provider Resources <strong>MAY</strong> be via one or more OSLC Service Provider Catalog Resources, or may be discovered by some other and/or additional Provider-specific means outwith the scope of this specification. The <code>oslc:Service</code> resources referenced by this <code>oslc:ServiceProvider</code> <strong>MUST</strong> have an <code>oslc:domain</code> of <code>http://open-services.net/ns/rm#</code>.</p>
 	
-	<p>Service providers <strong>MAY</strong> provide one more more <code>oslc:ServiceProviderCatalog</code> resources as defined by <a href="/bin/view/Main/OslcCoreSpecification#Service_Provider_Catalog_Resources">Core Specification Version 2.0 - Service Provider Resources</a>. Any such catalog resources <strong>MUST</strong> include at least one <code>oslc:domain</code> of <code>http://open-services.net/ns/rm#</code>. Discovery of top-level OSLC Service Provider Catalog Resources is outwith the scope of this specification.
+	<p>Service providers <strong>MAY</strong> provide one more more <code>oslc:ServiceProviderCatalog</code> resources as defined by <a href="http://openservices.net/bin/view/Main/OslcCoreSpecification#Service_Provider_Catalog_Resources">Core Specification Version 2.0 - Service Provider Resources</a>. Any such catalog resources <strong>MUST</strong> include at least one <code>oslc:domain</code> of <code>http://open-services.net/ns/rm#</code>. Discovery of top-level OSLC Service Provider Catalog Resources is outwith the scope of this specification.
 	</p>
 	<p>Service providers <strong>MUST</strong> give an <code>oslc:serviceProvider</code> property on all OSLC Defined Resources. This property <strong>MUST</strong> refer to an appropriate <code>oslc:ServiceProvider</code> resource.
 	</p>
 	<h3>Creation Factories </h3>	
-	<p>Service providers supporting resource creation <strong>MUST</strong> do so through <code>oslc:CreationFactory</code> resources, as defined by <a href="/bin/view/Main/OslcCoreSpecification#Creation_Factories">Core Specification Version 2.0 - Creation Factories</a>. Any such factory resources <strong>MUST</strong> be discoverable through <code>oslc:Service</code> resources. Providers <strong>SHOULD</strong> provide <code>oslc:ResourceShape</code> resources on <code>oslc:CreationFactory</code> resources as defined by <a href="/bin/view/Main/OSLCCoreSpecAppendixA#oslc_ResourceShape_Resource">OSLC Core Specification Appendix A: Common Properties - Resource Shapes</a>.
+	<p>Service providers supporting resource creation <strong>MUST</strong> do so through <code>oslc:CreationFactory</code> resources, as defined by <a href="http://openservices.net/bin/view/Main/OslcCoreSpecification#Creation_Factories">Core Specification Version 2.0 - Creation Factories</a>. Any such factory resources <strong>MUST</strong> be discoverable through <code>oslc:Service</code> resources. Providers <strong>SHOULD</strong> provide <code>oslc:ResourceShape</code> resources on <code>oslc:CreationFactory</code> resources as defined by <a href="http://openservices.net/bin/view/Main/OSLCCoreSpecAppendixA#oslc_ResourceShape_Resource">OSLC Core Specification Appendix A: Common Properties - Resource Shapes</a>.
 	</p>
 	<h3>Query Capabilities </h3>
-	<p>Service providers <strong>MUST</strong> support query capabilities, as defined by <a href="/bin/view/Main/OslcCoreSpecification#Query_Capabilities">Core Specification Version 2.0 - Query Capabilities</a>. Providers <strong>SHOULD</strong> provide <code>oslc:ResourceShape</code> on <code>oslc:QueryCapability</code> resources as defined by <a href="/bin/view/Main/OSLCCoreSpecAppendixA#oslc_ResourceShape_Resource">OSLC Core Specification Appendix A: Common Properties - Resource Shapes</a>.
+	<p>Service providers <strong>MUST</strong> support query capabilities, as defined by <a href="http://openservices.net/bin/view/Main/OslcCoreSpecification#Query_Capabilities">Core Specification Version 2.0 - Query Capabilities</a>. Providers <strong>SHOULD</strong> provide <code>oslc:ResourceShape</code> on <code>oslc:QueryCapability</code> resources as defined by <a href="http://openservices.net/bin/view/Main/OSLCCoreSpecAppendixA#oslc_ResourceShape_Resource">OSLC Core Specification Appendix A: Common Properties - Resource Shapes</a>.
 	</p>
 	<p>The Query Capability <strong>MUST</strong> support these parameters: </p>
 	<ul>
@@ -329,18 +724,18 @@
 		</ul> 
 	<p>Where <code>oslc:ResourceShape</code> is not supported by the Query Capability, providers <strong>SHOULD</strong> use the following guidance to represent query results:</p>
 	<ul>
-		<li> For RDF/XML and XML, use <code>rdf:Description</code> and <code>rdfs:member</code> as defined by <a href="/bin/view/Main/OSLCCoreSpecAppendixRepresentations#RDF_XML_Examples">Core Specification Appendix B:Representations and Examples - RDF/XML Examples</a>.</li> 
-		<li> For JSON the query results are contained within <code>oslc:resutls</code> array. See <a href="/bin/view/Main/OSLCCoreSpecAppendixRepresentations#Guidelines_for_JSON">Core Specification Appendix B: Representations and Examples - Guidelines for JSON</a>.</li>
+		<li> For RDF/XML and XML, use <code>rdf:Description</code> and <code>rdfs:member</code> as defined by <a href="http://openservices.net/bin/view/Main/OSLCCoreSpecAppendixRepresentations#RDF_XML_Examples">Core Specification Appendix B:Representations and Examples - RDF/XML Examples</a>.</li> 
+		<li> For JSON the query results are contained within <code>oslc:results</code> array. See <a href="http://openservices.net/bin/view/Main/OSLCCoreSpecAppendixRepresentations#Guidelines_for_JSON">Core Specification Appendix B: Representations and Examples - Guidelines for JSON</a>.</li>
 	</ul> 
-	<p>The stability of query results is OPTIONAL (see <a href="/bin/view/Main/OslcCoreSpecification" class="twikiLink">Core Specification Version 2.0 - Stable Paging</a>)</p>.
+	<p>The stability of query results is OPTIONAL (see <a href="http://openservices.net/bin/view/Main/OslcCoreSpecification" class="twikiLink">Core Specification Version 2.0 - Stable Paging</a>)</p>.
 
 	<h3>Delegated UIs </h3>
-	<p>OSLC KM service providers <strong>MUST</strong> support the selection and creation of resources by delegated web-based user interface dialogs <a href="/bin/view/Main/OslcCoreSpecification#Delegated_User_Interface_Dialogs">Delegated UIs</a> as defined by OSLC Core.</p>
-    <p>OSLC KM service providers <strong>MAY</strong> support the pre-filling of creation dialogs based on the definition at <a href="/bin/view/Main/OslcCoreSpecification#Delegated_User_Interface_Dialogs">Delegated UIs</a>.
+	<p>OSLC KPI service providers <strong>MUST</strong> support the selection and creation of resources by delegated web-based user interface dialogs <a href="http://openservices.net/bin/view/Main/OslcCoreSpecification#Delegated_User_Interface_Dialogs">Delegated UIs</a> as defined by OSLC Core.</p>
+    <p>OSLC KPI service providers <strong>MAY</strong> support the pre-filling of creation dialogs based on the definition at <a href="http://openservices.net/bin/view/Main/OslcCoreSpecification#Delegated_User_Interface_Dialogs">Delegated UIs</a>.
 	</p>
 	
 	<h3>Usage Identifiers </h3>
-	<p>OSLC KM service provider <strong>MAY</strong> identify the usage of various services with additional property values for the <a href="/bin/view/Main/OslcCoreSpecification#Service_Provider_Resources">OSLC Core</a> defined <code>oslc:usage</code> property on <code>oslc:Dialog</code>, <code>CreationFactory</code> and <code>QueryCapability</code>. The <code>oslc:usage</code> property value of <code>http://open-services.net/ns/core#default</code> <strong>SHOULD</strong> be used to designate the default or primary service to be used by consumers when multiple entries are found.
+	<p>OSLC KPI service provider <strong>MAY</strong> identify the usage of various services with additional property values for the <a href="http://openservices.net/bin/view/Main/OslcCoreSpecification#Service_Provider_Resources">OSLC Core</a> defined <code>oslc:usage</code> property on <code>oslc:Dialog</code>, <code>CreationFactory</code> and <code>QueryCapability</code>. The <code>oslc:usage</code> property value of <code>http://open-services.net/ns/core#default</code> <strong>SHOULD</strong> be used to designate the default or primary service to be used by consumers when multiple entries are found.
 	</p>
 	<p>There are no additional usage identifiers defined by this specification. OSLC Providers <strong>MAY</strong> provide their own usage URIs. Such usage URIs <strong>MUST</strong> be in a non-OSLC namespace.
   </p>
@@ -351,28 +746,48 @@
 	<h3>Requesting formats </h3>
 	<p>RM 1.0 consumers wanting to request 1.0 resource formats will not need to change if they used 1.0 defined media types ( <code>application/x-oslc-rm*</code>), see OSLC-RM 1.0. RM 2.0 consumers should use media types as defined in this specification for requests, excluding the OSLC RM 1.0 specific media types ( <code>application/x-oslc-rm*</code>). RM consumers supporting both 1.0 and 2.0, should request request both 1.0 and 2.0 media types on HTTP GET requests as usually done with HTTP request parameter <code>Accept</code> giving appropriate quality (See HTTP Accept) weighting to help distinguish their preferred content.
 	</p>
-	<p>For additional guidance, a KM 1.0 consumer or provider <strong>MAY</strong> reference the <code>OSLC-Core-Version		</code> HTTP header with a value of <code>1.0</code>.
+	<p>For additional guidance, a KPI 1.0 consumer or provider <strong>MAY</strong> reference the <code>OSLC-Core-Version		</code> HTTP header with a value of <code>1.0</code>.
 	</p>
   </section>
 
-	 <section class='appendix'>
-      <h2>Examples</h2>
+  <section>
+      <h2>Open Issues</h2>
       <p>
-        Many thanks to Robin Berjon for making our lives so much easier with his cool tool.
+      As it has been previously stated, the main advantage of this approach lies on the creation of a specific element, KPI, that serves to refactor the context of a set of observation in just one place. Any KPI can keep a list of datasets grouping observations according to a dimension such as time or tool. KPIs can be separately shared and combined.
+	  </p>
+	<p>	Nevertheless, this framework for automatically populating observations as RDF contains a main drawback due to the fact that do not represent a closed shape. That is why, next version of this approach must merge the concept of KPI within the existing definitions in the “OSLC Performance Monitoring”, “OSLC Estimation and Measurement (EMS)” specifications (even some definitions of the “OSLC Quality Management” can be also re-used), see Figure 2, taking advantage of both sides to publish and exchange observations under a particular context and linked to an indicator.
+	</p>	
+	
+	<p style="text-align:center">
+	  <img src="imgs/convergence.png" width="30%"/> <br/>
+	   Figure 2: OSLC KPIs as a combined specification of existing OSLC specifications.
+	</p>
+
+	  
+    </section>
+	
+   <section class='appendix'>
+      <h2>Implementation</h2>
+      <p>
+       The current specification is implemented in the following tools:
       </p>
+	  <ul>
+		<li><a href="http://www.reusecompany.com/requirements-quality-analyzer">Requirements Quality Analyzer</a> by <a href="http://www.reusecompany.com">The Reuse Company</a>.
+		</li>
+	  </ul>
     </section>
 	
     
     <section class='appendix'>
       <h2>Acknowledgements</h2>
       <p>
-        Many thanks to Robin Berjon for making our lives so much easier with his cool tool.
+        The research leading to these results has received funding from the <a href="http://www.artemis-ju.eu/home_page">ARTEMIS Joint Undertaking</a> under grant agreement <a href="http://www.crystal-artemis.eu/">Nº 332830-CRYSTAL (CRitical sYSTem engineering AcceLeration project)</a> and from specific national programs and/or funding authorities. This work has been also supported by the <a href="http://www.minetur.gob.es/">Spanish Ministry of Industry</a>.
       </p>
     </section>
 	 <section class='appendix'>
-      <h2>References</h2>
+      <h2>OSLC Specifications-References</h2>
       <ul>
-		<li> OSLC Core - <a href="/bin/view/Main/OslcCoreSpecification">OSLC Core Specification 2.0</a></li>	
+		<li> OSLC Core - <a href="http://openservices.net/bin/view/Main/OslcCoreSpecification">OSLC Core Specification 2.0</a></li>	
 		<li> Dublin Core 1.1 - <a href="http://dublincore.org/documents/2010/10/11/dces/" target="_top">Dublin Core Metadata Element Set, Version 1.1</a></li> 
 		<li> FOAF - <a href="http://xmlns.com/foaf/spec/20100809.html" target="_top">Friend of a Friend (FOAF) v0.98</a></li> <li> HTTP 1.1 - <a href="http://tools.ietf.org/html/rfc2616" target="_top">Hyper-text Transfer Protocol (HTTP/1.1)</a></li> 
 		<li> OAuth 1.0a - <a href="http://tools.ietf.org/html/rfc5849" target="_top">RFC5849 - The OAuth 1.0 Protocol</a></li> 
@@ -382,10 +797,29 @@
 		<li> XML Namespaces - <a href="http://www.w3.org/TR/REC-xml-names/" target="_top">Namespaces in XML 1.0 (Third Edition)</a></li> 
 		<li> XML Base - <a href="http://www.w3.org/TR/xmlbase/" target="_top">XML Base (Second Edition)</a></li> 
 		<li> XSD Datatypes - <a href="http://www.w3.org/TR/xmlschema-2" target="_top">XML Schema Part 2: Datatypes Second Edition</a></li> 
-		<li> RDFS Schema of the OSLC KM V1.0 Specification Vocabulary - <a href="FIXME" target="_top">RDFS for KM</a>. This is for information purposes only and is non-normative.</li> 
-		<li> HTML presentation of the RDFS Schema of the OSLC KM V1.0 Specification Vocabulary - <a href="FIXME"KMSpecificationVocabularyV2</a>.</li>
+		<li> RDFS Schema of the OSLC KPI V1.0 Specification Vocabulary - <a href="FIXME" target="_top">RDFS for KM</a>. This is for information purposes only and is non-normative.</li> 
+		<li> HTML presentation of the RDFS Schema of the OSLC KPI V1.0 Specification Vocabulary - <a href="FIXME"KMSpecificationVocabularyV2</a>.</li>
 		</ul> 
     </section>
+	
+		<style>
+		body {
+			
+			  padding: 2em 1em 2em 70px;
+			  margin: 0;
+			  font-family: sans-serif;
+			  color: black;
+			  background: white;
+			  background-image: url("./imgs/body-type.png");
+			  background-position: top left;
+			  background-attachment: fixed;
+			  background-repeat: no-repeat;
+		}
+		p{text-align:justify}
+		ul li{text-align:justify}
+		ol li{text-align:justify}
+	</style>
+	
 	
   </body>
 </html>
