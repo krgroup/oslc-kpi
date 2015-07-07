@@ -97,9 +97,11 @@
     
     <section id='sotd'>
       <p>
-        You need to have a custom SotD paragraph. Maybe give a succinct description of your spec's
-        status.
+        This document defines a Key Performance Indicators Specification. It is based on existing Open Services for Lifecycle Collaboration (OSLC) documents following a similar structure and reusing some of the common contents. 
       </p>
+	  <p>This document has also followed the guidelines by <a href="http://www.w3c.org">W3C</a> and its tool <a href="http://www.w3.org/respec/">Respec</a> to provide a common visual format to other existing specifications.</p>
+	  <p> If you wish to make comments regarding this document, please send them to this repository. All comments are welcome.</p>
+	  <p> This is a draft document and may be updated, replaced or obsoleted by other documents at any time. It is inappropriate to cite this document as other than work in progress.</p>
     </section>
     
     <section>
@@ -114,7 +116,7 @@
 	  <li><strong>Documentation.</strong> New policy-making or quality management strategies go ahead of a simple and closed value and it is necessary to bring   new ways of exploiting data and information. Moreover the use of the Web-based protocols as a dissemination channel represents a powerful environment in which information should be available taking into account the multilingual and multicultural character of information. In this context documentation mechanisms must necessarily cover all the aforementioned features to afford a detailed explanation of a quantitative index-based policy to both policymakers and final users. However existing initiatives usually generates some kind of hand-made report which is not easy to keep up-to-date and deliver to the long-tail of interested third-parties.</li>
 	  </ul>
 	  
-	  <p>Obviously semantic-based technologies, as underlying concepts of the OSLC initiative, can partially address this challenging environment for supporting new quality-checking strategies. A common and shared data model based on existing standardized semantic web vocabularies and datasets can be used to represent indicators, unit metrics, or observations from both, structural and computational, points of view enabling a right exploitation of meta-data and semantics. That is why the present section introduces: a high-level model on top of the RDF Data Cube Vocabulary [1], a shared effort to model statistical data in RDF reusing parts (the cube model) of the Statistical Data and Metadata Exchange Vocabulary [2] (SDMX), to represent the structure and computation (if needed) of indicators and observations.
+	  <p>Obviously semantic-based technologies, as underlying concepts of the OSLC initiative, can partially address this challenging environment for supporting new quality-checking strategies. A common and shared data model based on existing standardized semantic web vocabularies and datasets can be used to represent indicators, unit metrics, or observations from both, structural and computational, points of view enabling a right exploitation of meta-data and semantics. That is why the present section introduces: a high-level model on top of the RDF Data Cube Vocabulary, a shared effort to model statistical data in RDF reusing parts (the cube model) of the Statistical Data and Metadata Exchange Vocabulary (SDMX), to represent the structure and computation (if needed) of indicators and observations.
 	  </p>
 	  <h2>Motivation and Objectives</h2>
       <p>
@@ -145,7 +147,72 @@
 		<li>An aggregated dataset is also a dataset.</li>
 
 	  </ul>
-	  <p>Building on the aforementioned definitions, it is possible to describe a set of key performance indicators, observations, indicators composition and structure. In this light, a direct translation built on the top of the RDF Data Cube Vocabulary (represented using the prefix <code>qb</code>), SDMX and other semantic web vocabularies is presented in the next table. Thus, all concepts in the index are described reusing existing definitions, taking advantage of previous efforts and pre-established semantics with the aim of being extended in the future to fit new context. </p>
+	  <p>Building on the aforementioned definitions, it is possible to describe a set of key performance indicators, observations, indicators composition and structure. In this light, a direct translation built on the top of the RDF Data Cube Vocabulary (represented using the prefix <code>qb</code>), SDMX and other semantic web vocabularies is presented in the next table. Thus, all concepts are described reusing existing definitions, taking advantage of previous efforts and pre-established semantics with the aim of being extended in the future to fit new context. </p>
+	  
+	  <table class="table table-stripedtable-bordered">
+	  <thead>
+		<tr>
+			<th>Concept</th>
+			<th>Shape Element</th>
+			<th>Comments</th>
+		</tr>
+	  </thead>
+	  <tbody>
+		<tr>
+			<td>Observation o</td>
+			<td><code>qb:Observation</code></td>
+			<td>Instance of the class <code>qb:Observation</code> to collect values and their context</td>
+		</tr>
+		<tr>
+			<td>Numerical value v</td>
+			<td><code>xsd:double </code></td>
+			<td>Restriction to numerical values</td>
+		</tr>
+		<tr>
+			<td>Measure m</td>
+			<td><code>qb:MeasureProperty</code> and <code>sdmx-measure:obsValue</code></td>
+			<td>Restriction to one measure if an index is designed. Otherwise a set of measures can be used</td>
+		</tr>
+		<tr>
+			<td>Status s</td>
+			<td><code>sdmx-concept:obsStatus</code></td>
+			<td>Defined by the SDMX-RDF vocabulary</td>
+		</tr>
+		<tr>
+			<td>Dataset q</td>
+			<td><code>qb:dataset</code> and <code>qb:DataStructureDefinition</code></td>
+			<td>Metadata of the <code>qb:Dataset</code></td>
+		</tr>
+		<tr>
+			<td>Dimension d_i  &isin; D</td>
+			<td><code>qb:DimensionProperty</code></td>
+			<td>Context of observations</td>
+		</tr>
+		<tr>
+			<td>Annotation a_i &isin; A</td>
+			<td><code>owl:AnnotationProperty</code></td>
+			<td>Intensive use of Dublin Core</td>
+		</tr>
+		<tr>
+			<td>Attribute at_i &isin; T</td>
+			<td><code>qb:AttributeProperty</code></td>
+			<td>Link to existing datasets such as DBPedia</td>
+		</tr>
+		<tr>
+			<td>OWA operator p</td>
+			<td>SPARQL 1.1 aggregation operators</td>
+			<td>Other extensions depend on the RDF repository or RDF service</td>
+		</tr>
+		<tr>
+			<td>Index, Indicator and Component</td>
+			<td><code>skos:Concept</code></td>
+			<td>SKOS taxonomy (logical structure if a hierarchy is used)</td>
+		</tr>
+	  </tbody>
+	  </table>
+	  
+	  
+	  <p>This approach is focused on publishing of statistical values without paying special attention to what type of indicators and observations are going to be generated. Thus, two major resources are defined, KPI and Observation, to create new constructors or primitives on top of the RDF Data Cube Vocabulary, see Figure 1.</p>
 	  
 	  <p style="text-align:center">
 	  <img src="imgs/KPI-model.png" width="80%"/> <br/>
@@ -153,7 +220,6 @@
 	  </p>
 	  
 	  
-	  <p>This approach is focused on publishing of statistical values without paying special attention to what type of indicators and observations are going to be generated. Thus, two major resources are defined, KPI and Observation, to create new constructors or primitives on top of the RDF Data Cube Vocabulary, see Figure 1.</p>
 	  <p>The main advantage of this approach lies on the separation of dimensions and attributes between indicators and observations. Obviously both can contain particular metaproperties (attributes) but main and common characteristics (dimensions and attributes) of all observations are refactored in the indicator structure. Besides, some positive side effects of this approach lies on the possibility of easing the versioning and tracking of observations on the same indicator. For instance, observations can be easily sliced by a dimension or an attribute. In the case of requirements quality, a dimension can be a project, an indicator, etc.</p>
 	  <p>However, the main drawback of this approach is that is not closed (an intrinsic RDF characteristic), new dimensions or/and attributes could be automatically generated by third-party tools. That is why, it is completely necessary to merge the advantages of this approach with the existing OSLC specifications about “Performance Monitoring” and “Estimation and Measurement” that provide a closed shape for publishing metrics and observations.</p>
 
@@ -271,8 +337,8 @@
 	 <p>This specification reserves, for possible future use, the use of the HTTP header <code>OSLC-KPI-Version</code>. OSLC Providers <strong>MUST NOT</strong> use this HTTP header.
 	 </p>
 	  <h3>Namespaces</h3>
-	  <p> In addition to the namespace URIs and namespace prefixes <code>oslc</code>, <code>rdf</code>, <code>dcterms</code> and <code>foaf</code> defined in the <a href="http://open-services.net/bin/view/Main/OslcCoreSpecification">Core Specification Version 2.0</a>, OSLC KPI defines the namespace URI of <code>http://ios.crystal-artemis.eu/ns/km/</code> with a preferred namespace prefix of <code>Ios_km</code>.
-	  <p>Furthermore, the SKOS (Simple Knowledge Organization System), a W3C Recommendation, is also defined through the namespace: <code>http://www.w3.org/2004/02/skos/core</code>  and prefix: <code>skos</code>. Other semantic-based vocabularies will use the <em>de facto</em> namespace and prefix that can be searched using the service: <a href="http://prefix.cc">Prefix.cc</a>.
+	  <p> In addition to the namespace URIs and namespace prefixes <code>oslc</code>, <code>rdf</code>, <code>dcterms</code> and <code>foaf</code> defined in the <a href="http://open-services.net/bin/view/Main/OslcCoreSpecification">Core Specification Version 2.0</a>, OSLC KPI defines the namespace URI of <code>http://ios.crystal-artemis.eu/ns/kpi/</code> with a preferred namespace prefix of <code>Ios_km</code>.
+	  <p>Furthermore, the RDF Data Cube Vocabulary, a W3C Recommendation, is also defined through the namespace: <code>http://purl.org/linked-data/cube#</code>  and prefix: <code>qb</code>. Other semantic-based vocabularies will use the <em>de facto</em> namespace and prefix that can be searched using the service: <a href="http://prefix.cc">Prefix.cc</a>.
 	  <h3>Resource Formats</h3>
 	  <p>In addition to the requirements for <a href="http://open-services.net/bin/view/Main/OslcCoreSpecification#OslcDefinedResourceRepresentations">Core Specification Version 2.0 - OSLC Defined Resource Representations</a>, this section outlines further refinements and restrictions.
 	  </p>
