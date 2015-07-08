@@ -335,7 +335,7 @@
 	 <p>This specification reserves, for possible future use, the use of the HTTP header <code>OSLC-KPI-Version</code>. OSLC Providers <strong>MUST NOT</strong> use this HTTP header.
 	 </p>
 	  <h3>Namespaces</h3>
-	  <p> In addition to the namespace URIs and namespace prefixes <code>oslc</code>, <code>rdf</code>, <code>dcterms</code> and <code>foaf</code> defined in the <a href="http://open-services.net/bin/view/Main/OslcCoreSpecification">Core Specification Version 2.0</a>, OSLC KPI defines the namespace URI of <code>http://ios.crystal-artemis.eu/ns/kpi/</code> with a preferred namespace prefix of <code>Ios_km</code>.
+	  <p> In addition to the namespace URIs and namespace prefixes <code>oslc</code>, <code>rdf</code>, <code>dcterms</code> and <code>foaf</code> defined in the <a href="http://open-services.net/bin/view/Main/OslcCoreSpecification">Core Specification Version 2.0</a>, OSLC KPI defines the namespace URI of <code>http://trc-research.org/spec/kpi/</code> with a preferred namespace prefix of <code>Ios_km</code>.
 	  <p>Furthermore, the RDF Data Cube Vocabulary, a W3C Recommendation, is also defined through the namespace: <code>http://purl.org/linked-data/cube#</code>  and prefix: <code>qb</code>. Other semantic-based vocabularies will use the <em>de facto</em> namespace and prefix that can be searched using the service: <a href="http://prefix.cc">Prefix.cc</a>.
 	  <h3>Resource Formats</h3>
 	  <p>In addition to the requirements for <a href="http://open-services.net/bin/view/Main/OslcCoreSpecification#OslcDefinedResourceRepresentations">Core Specification Version 2.0 - OSLC Defined Resource Representations</a>, this section outlines further refinements and restrictions.
@@ -566,7 +566,7 @@
 
 		</tr>
 		<tr>
-			<td><a href="#" title="Ios_kpi:aggregates">Ios_kpi:aggregates</a></td>
+			<td><a href="http://trc-research.org/spec/kpi/aggregates" title="oslc_kpi:aggregates"><code>oslc_kpi:aggregates</code></a></td>
 			<td>Zero-or-many</td>
 			<td>True</td>
 			<td>Either Resource or Local Resource</td>
@@ -576,7 +576,7 @@
 
 		</tr>
 		<tr>
-			<td><a href="Ios_kpi:dataset" title="Ios kpi:dataset"><code>Ios_kpi:dataset</code></a></td>
+			<td><a href="oslc_kpi:dataset" title="oslc_kpi:dataset"><code>oslc_kpi:dataset</code></a></td>
 			<td>Zero-or-many</td>
 			<td>False</td>
 			<td>Either Resource or Local Resource</td>
@@ -586,7 +586,7 @@
 
 		</tr>
 		<tr>
-			<td><a href="#" title="Ios_kpi:time"><code>Ios_kpi:time</code></a></td>
+			<td><a href="http://trc-research.org/spec/kpi/time" title="oslc_kpi:time"><code>oslc_kpi:time</code></a></td>
 			<td>Exactly-one</td>
 			<td>True</td>
 			<td>Resource</td>
@@ -689,12 +689,12 @@
 			<td>True</td>
 			<td>Resource</td>
 			<td>Reference</td>
-			<td><a href="#" title="Ios kpi:KPI"><code>Ios kpi:KPI</code></a></td>
+			<td><a href="http://trc-research.org/spec/kpi/KPI" title="oslc_kpi:KPI"><code>oslc_kpi:KPI</code></a></td>
 			<td>A reference to the KPI that explains this observation. The KPI contains all information regarding dimensions, attributes, etc. (context) while the observation is just a mere value+metadata.</td>
 			
 		</tr>
 		<tr>
-			<td><a href="#" title="Ios kpi:value"><code>Ios kpi:value</code></a></td>
+			<td><a href="http://trc-research.org/spec/kpi/value" title="oslc_kpi:value"><code>oslc_kpi:value</code></a></td>
 			<td>Exactly-one</td>
 			<td>True</td>
 			<td>Either Resource or Local Resource</td>
@@ -704,7 +704,7 @@
 			
 		</tr>
 		<tr>
-			<td><a href="#" title="Ios kpi:md5 hash"><code>Ios_kpi:md5-hash</code></a></td>
+			<td><a href="http://trc-research.org/spec/kpi/md5-hash" title="oslc_kpi:md5 hash"><code>oslc_kpi:md5-hash</code></a></td>
 			<td>Exactly-one</td>
 			<td>True</td>
 			<td>String</td>
@@ -747,12 +747,12 @@
 			
 		</tr>
 		<tr>
-			<td><a href="#" title="Ios kpi:ref indicator"><code>Ios_kpi:ref-indicator</code></a></td>
+			<td><a href="http://trc-research.org/spec/kpi/ref-indicator" title="oslc_kpi:ref indicator"><code>oslc_kpi:ref-indicator</code></a></td>
 			<td>Exactly-one</td>
 			<td>True</td>
 			<td>Resource</td>
 			<td>Reference</td>
-			<td><a href="#" title="Ios kpi:KPI"><code>Ios_kpi:KPI</code></a></td>
+			<td><a href="http://trc-research.org/spec/kpi/KPI" title="oslc_kpi:KPI"><code>oslc_kpi:KPI</code></a></td>
 			<td>A direct link to the KPI for which this observation is being generated. It can be also reached from the link between KPI-&gt;dataset-&gt;Observation but a direct link can be useful for presentation purposes.</td>
 			
 		</tr>
